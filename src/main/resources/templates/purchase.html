@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/purchase.css}">
+</head>
+<body>
+<div class="header">
+    <span class="fw-bold fs-4">Murugan Jewellery</span>
+    <div class="right d-flex align-items-center">
+        <span th:text="'Welcome, ' + ${username}">Welcome, User</span>
+        <a th:href="@{/logout}" class="btn btn-sm btn-light ms-3">Logout</a>
+    </div>
+</div>
+
+<nav class="sidebar">
+    <a th:href="@{/home}">Home</a>
+    <a th:href="@{/purchase}">Purchase</a>
+    <a th:href="@{/sales}">Sales</a>
+    <a th:href="@{/stock}">Stock</a>
+    <a th:href="@{/payment}">Payment</a>
+    <a th:href="@{/salesHistory}">Sales History</a>
+    <a th:href="@{/purchaseHistory}">Purchase History</a>
+</nav>
+
+<div class="main-content">
+    <h2>Product Details</h2>
+    <form th:action="@{/saveProduct}" method="post" th:object="${product}" id="productForm">
+        <div class="mb-3">
+            <label for="type" class="form-label"><strong>Types of Product:</strong></label>
+            <select id="type" th:field="*{type}" class="form-select" required>
+                <option value="">--Select Product type--</option>
+                <option value="ring">Ring</option>
+                <option value="chain">Chain</option>
+                <option value="coin">Coin</option>
+                <option value="Earring">Earring</option>
+                <option value="Silver Anklet">Silver Anklet</option>
+                <option value="Silver Bracelet">Silver Bracelet</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="quantity" class="form-label"><strong>Quantity:</strong></label>
+            <input type="number" id="quantity" th:field="*{quantity}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label"><strong>Price:</strong></label>
+            <input type="number" step="0.01" id="price" th:field="*{price}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="gram" class="form-label"><strong>Gram:</strong></label>
+            <select id="gram" th:field="*{gram}" class="form-select" required>
+                <option value="">--Select Gram--</option>
+                <option value="1gram">1 Gram</option>
+                <option value="2gram">2 Gram</option>
+                <option value="3gram">3 Gram</option>
+                <option value="4gram">4 Gram</option>
+                <option value="5gram">5 Gram</option>
+                <option value="6gram">6 Gram</option>
+                <option value="7gram">7 Gram</option>
+                <option value="8gram">8 Gram</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="totalAmount" class="form-label"><strong>Total Amount:</strong></label>
+            <input type="number" step="0.01" id="totalAmount" th:field="*{totalAmount}" class="form-control" required readonly/>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label"><strong>Date:</strong></label>
+            <input type="date" id="date" th:field="*{date}" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <div id="successMessage" class="alert alert-success d-none"></div>
+</div>
+<script th:src="@{/js/Purchase.js}"></script>
+</body>
+</html>

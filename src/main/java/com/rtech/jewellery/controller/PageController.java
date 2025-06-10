@@ -20,8 +20,7 @@
 
         @GetMapping("/home")
         public String Showhome(HttpSession session,Model model){
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String name = auth.getName();
+            String name = session.getAttribute("userName").toString();
             model.addAttribute("username",name);
             return "home";
         }

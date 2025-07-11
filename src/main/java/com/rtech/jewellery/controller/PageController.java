@@ -74,4 +74,11 @@
             session.invalidate();
             return "login";
         }
+
+        @GetMapping("/monthlySales")
+        public String MonthlySalesReport(HttpSession session,Model model){
+            String name = session.getAttribute("userName").toString();
+            model.addAttribute("username",name);
+            return "monthlySales";
+        }
     }

@@ -18,8 +18,8 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login","/signup","/api/authenticate","/css/**","/js/**","/images/**","/fonts/**","/vendor/**","/favicon.ico").permitAll()
-                        .requestMatchers("/home","/payment","/purchase","/purchaseHistory","/sales","/salesHistory","/stock").authenticated()
+                        .requestMatchers("/login","/signup","/api/authenticate","/css/**","/js/**","/images/**","/fonts/**","/vendor/**","/favicon.ico","/sales/print/**").permitAll()
+                        .requestMatchers("/home","/payment","/purchase","/purchaseHistory","/sales","/salesHistory","/stock","/monthlySales").authenticated()
                         .anyRequest().authenticated()
                 )
                 .logout(logout ->logout.logoutSuccessUrl("/login").permitAll())

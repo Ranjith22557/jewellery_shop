@@ -14,7 +14,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     Optional<Product> findByTypeAndGram(String type, String gram);
 
-    @Query(value = "select * from Product where quantity > 0 and remaining_qty >0 and isActive=true",nativeQuery = true)
+    @Query(value = "select * from Product where quantity > 0 and remaining_qty >0 and is_active=true",nativeQuery = true)
     public List<Product> getAllRemainingQtyProduct();
 
 }

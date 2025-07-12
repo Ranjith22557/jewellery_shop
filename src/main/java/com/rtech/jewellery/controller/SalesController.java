@@ -4,6 +4,7 @@ import com.rtech.jewellery.entity.Product;
 import com.rtech.jewellery.entity.Sales;
 import com.rtech.jewellery.service.PurchaseService;
 import com.rtech.jewellery.service.SaleService;
+import com.rtech.jewellery.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class SalesController {
 
     @Autowired
     PurchaseService purchaseService;
+
+    @Autowired
+    private SmsService smsService;
 
     @GetMapping("/totalAmount")
     public ResponseEntity<Map<String,Object>> getPriceByType(@RequestParam String type,@RequestParam String gram){
@@ -54,9 +58,8 @@ public class SalesController {
             productObj.setRemainingQty(qty);
             purchaseService.saveProduct(productObj);
         }
-
         //Save customer
-        saleService.saveCustomer(sales);
+        saleService.processSales(sales);
         return ResponseEntity.ok().body("Customer saved successfully");
     }
 

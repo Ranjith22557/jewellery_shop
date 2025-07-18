@@ -17,6 +17,9 @@ public class JewelleryApplication {
 		System.setProperty("DB_URL", dotenv.get("DB_URL"));
 		System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
+		System.setProperty("TWILIO_SID", dotenv.get("TWILIO_SID"));
+		System.setProperty("TWILIO_AUTH_TOKEN", dotenv.get("TWILIO_AUTH_TOKEN"));
+		System.setProperty("TWILIO_NUMBER", dotenv.get("TWILIO_NUMBER"));
 
 		SpringApplication.run(JewelleryApplication.class, args);
 	}

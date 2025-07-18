@@ -18,6 +18,9 @@ public class SaleService {
     @Autowired
     SalesRepository salesRepository;
 
+    @Autowired
+    SmsService smsService;
+
     //get price based on type and gram
     public Object getPriceByTypeAndGram(String type,String gram){
         return salesRepository.findPriceByTypeAndGram(type,gram);
@@ -56,5 +59,21 @@ public class SaleService {
             summaryList.add(new MonthlySalesDto(month,year,total));
         }
         return summaryList;
+    }
+    public void processSales(Sales sales){
+
+        salesRepository.save(sales);
+
+        String message = buildMessage(sales);
+        smsService.sendSms(sales.getPhoneNo(),message);
+    }
+
+    private String buildMessage(Sales sales){
+        return "Murugan Jeweller\n" +
+                "Customer Name: " + sales.getCustomerName() + "\n" +
+                "Date: " + sales.getDate() + "\n" +
+                "Product Name: " + sales.getItemType() + "\n" +
+                "Gram: " + sales.getGram() + "\n" +
+                "Amount: ₹" + sales.getNetTotalAmount();
     }
 }

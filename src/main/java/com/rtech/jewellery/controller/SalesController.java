@@ -69,7 +69,7 @@ public class SalesController {
             purchaseService.saveProduct(productObj);
         }
         //Save customer
-        saleService.saveCustomer(sales);
+        saleService.processSales(sales);
 
         try{
             String name = sales.getCustomerName();

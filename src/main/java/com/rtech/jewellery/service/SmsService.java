@@ -24,6 +24,7 @@ public class SmsService {
     }
     public void sendSms(String toPhoneNumber,String messageBody){
         try {
+            init();
             Message.creator(
                             new PhoneNumber(toPhoneNumber),
                             new PhoneNumber(twilioNumber),

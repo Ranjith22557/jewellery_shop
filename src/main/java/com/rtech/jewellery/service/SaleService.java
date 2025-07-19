@@ -4,6 +4,7 @@ import com.rtech.jewellery.dto.MonthlySalesDto;
 import com.rtech.jewellery.entity.Product;
 import com.rtech.jewellery.entity.Sales;
 import com.rtech.jewellery.repository.SalesRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,7 @@ public class SaleService {
         }
         return summaryList;
     }
+    @Transactional
     public void processSales(Sales sales){
 
         salesRepository.save(sales);

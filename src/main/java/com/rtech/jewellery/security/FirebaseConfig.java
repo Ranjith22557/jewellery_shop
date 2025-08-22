@@ -17,12 +17,13 @@ public class FirebaseConfig {
 
     @PostConstruct
     public void initializeFirebase() throws IOException {
-        //FileInputStream serviceAccount =
-                //new FileInputStream("src/main/resources/jewellery.json");
 
-        Resource resource = new ClassPathResource("jewellery.json");
+        //Resource resource = new ClassPathResource("jewellery.json");
 
-        try(InputStream serviceAccount = resource.getInputStream()){
+        String firebaseConfigPath = System.getenv("FIREBASE_CONFIG"); // Render gives the file path
+
+        try(FileInputStream serviceAccount = new FileInputStream(firebaseConfigPath)){
+        //try(FileInputStream serviceAccount = new FileInputStream(firebaseConfigPath)){
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .build();

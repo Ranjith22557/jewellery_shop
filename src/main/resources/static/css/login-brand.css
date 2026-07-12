@@ -1,0 +1,25 @@
+/* Murugan Jewellery brand override for the login template
+   (keeps the template's layout/animations, replaces its default
+   cyan/pink color scheme with the site's maroon + gold palette) */
+
+.login100-form-title {
+    color: #6d1b3a;
+}
+
+.wrap-login100-form-btn {
+    box-shadow: 0 5px 30px 0px rgba(205, 164, 52, 0.35);
+}
+
+.login100-form-bgbtn {
+    background: #6d1b3a;
+    background: linear-gradient(to right, #6d1b3a, #cda434, #6d1b3a, #cda434);
+}
+
+.has-val.input100 + .focus-input100::after,
+.input100:focus + .focus-input100::after {
+    color: #cda434;
+}
+
+.symbol-input100 {
+    color: #6d1b3a !important;
+}

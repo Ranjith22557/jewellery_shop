@@ -1,29 +1,42 @@
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background-color: #f3d7ec;
+    background: linear-gradient(135deg, #fdf8f0, #f3e3b3);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
     text-align: center;
+    width: 100%;
 }
 
 h2 {
     margin-bottom: 20px;
-    color: #000;
+    color: #4a1226;
 }
 
 .card {
-    background-color: #373741;
+    background-color: #6d1b3a;
     padding: 40px 30px;
     border-radius: 10px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    width: 350px;
+    box-shadow: 0 15px 30px rgba(74, 18, 38, 0.3);
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
     color: white;
+    box-sizing: border-box;
+    border: 1px solid #cda434;
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 30px 20px;
+    }
 }
 
 .profile-img {
@@ -57,8 +70,8 @@ input[type="password"] {
     border-radius: 20px;
     border: none;
     margin-top: 5px;
-    background-color: #2f2f37;
-    color: #ccc;
+    background-color: #4a1226;
+    color: #f3e3b3;
 }
 
 .password-field {
@@ -76,12 +89,12 @@ input[type="password"] {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #888;
+    color: #cda434;
 }
 
 button {
-    background-color: #00d084;
-    color: white;
+    background-color: #cda434;
+    color: #4a1226;
     padding: 10px;
     margin-top: 25px;
     border: none;
@@ -92,7 +105,7 @@ button {
 }
 
 button:hover {
-    background-color: #00b875;
+    background-color: #f3e3b3;
 }
 
 .signin-text {
@@ -101,6 +114,6 @@ button:hover {
 }
 
 .signin-text a {
-    color: #00d084;
+    color: #cda434;
     text-decoration: none;
 }

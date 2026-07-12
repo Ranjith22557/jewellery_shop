@@ -1,34 +1,8 @@
 body {
-            font-family: Arial, sans-serif;
-        }
-        .sidebar {
-            height: 100vh;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            display: block;
-            padding: 10px 15px;
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .sidebar a:hover {
-            background-color: #ddd;
-        }
-        .header {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 20px;
-        }
-        .header .right {
-            float: right;
-        }
-        .col-md-4 {
-            flex : 0 0 auto;
-            width :232px;
-        }
-        .col-md-3 {
-            flex : 0 0 auto;
-            width : 232px;
-        }
+    font-family: Arial, sans-serif;
+}
+/* Header, sidebar, and main-content layout/colors are defined once in
+   theme.css and shared by every authenticated page for consistency.
+   Column widths for the dashboard cards come from Bootstrap's
+   responsive grid (col-md-3 / col-md-4); see responsive.css for the
+   mobile/tablet card-per-row overrides. */

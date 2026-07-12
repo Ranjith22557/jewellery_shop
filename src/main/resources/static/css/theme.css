@@ -1,0 +1,148 @@
+/* =====================================================
+   Murugan Jewellery — unified theme & layout
+   Loaded on every authenticated page (home, purchase,
+   sales, payment, stock, salesHistory, purchaseHistory)
+   AFTER the page-specific CSS, so these rules win and
+   every page shares identical header/sidebar dimensions.
+   ===================================================== */
+
+:root {
+    --brand-maroon: #6d1b3a;
+    --brand-maroon-dark: #4a1226;
+    --brand-gold: #cda434;
+    --brand-gold-light: #f3e3b3;
+    --brand-cream: #fdf8f0;
+    --text-dark: #2b2320;
+    --header-height: 64px;
+    --sidebar-width: 220px;
+}
+
+body {
+    background-color: var(--brand-cream);
+    color: var(--text-dark);
+}
+
+/* ---------- Header (identical on every page) ---------- */
+.header {
+    background: linear-gradient(135deg, var(--brand-maroon), var(--brand-maroon-dark));
+    color: #fff;
+    height: var(--header-height);
+    min-height: var(--header-height);
+    padding: 0 20px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1020;
+    border-bottom: 2px solid var(--brand-gold);
+    box-sizing: border-box;
+}
+
+.header .fw-bold,
+.header span.fw-bold,
+.header > span:first-of-type {
+    color: var(--brand-gold-light);
+    letter-spacing: 0.3px;
+}
+
+.header .btn-light {
+    background-color: var(--brand-gold);
+    border-color: var(--brand-gold);
+    color: var(--brand-maroon-dark);
+    font-weight: 600;
+}
+
+.header .btn-light:hover {
+    background-color: var(--brand-gold-light);
+    border-color: var(--brand-gold-light);
+}
+
+/* ---------- Sidebar (identical on every page) ---------- */
+.sidebar {
+    position: fixed !important;
+    top: var(--header-height) !important;
+    left: 0 !important;
+    width: var(--sidebar-width) !important;
+    height: calc(100vh - var(--header-height)) !important;
+    background-color: #fffaf0 !important;
+    border-right: 1px solid var(--brand-gold-light);
+    padding-top: 16px !important;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--brand-maroon-dark) !important;
+    text-decoration: none;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.sidebar a:hover {
+    background-color: var(--brand-gold-light) !important;
+    border-left: 3px solid var(--brand-gold);
+}
+
+.sidebar a.active {
+    background-color: var(--brand-gold-light) !important;
+    border-left: 3px solid var(--brand-maroon);
+    font-weight: 700;
+}
+
+/* ---------- Main content (identical offsets on every page) ---------- */
+.main-content {
+    margin-left: var(--sidebar-width) !important;
+    margin-top: var(--header-height) !important;
+    padding: 24px !important;
+    box-sizing: border-box;
+    width: calc(100% - var(--sidebar-width));
+}
+
+.main-content h2 {
+    color: var(--brand-maroon);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Note: home.html now uses the same header/sidebar/main-content
+   structure as every other page, so no special-casing is needed here. */
+
+/* ---------- Buttons & form accents ---------- */
+.btn-primary {
+    background-color: var(--brand-maroon) !important;
+    border-color: var(--brand-maroon) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-maroon-dark) !important;
+    border-color: var(--brand-maroon-dark) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-gold);
+    box-shadow: 0 0 0 0.2rem rgba(205, 164, 52, 0.25);
+}
+
+/* ---------- Dashboard summary cards ---------- */
+.card.bg-primary,
+.card.text-white.bg-primary {
+    background: linear-gradient(135deg, var(--brand-maroon), var(--brand-gold)) !important;
+    border: none;
+}
+
+/* ---------- Tables ---------- */
+.table thead.table-light,
+.table > :not(caption) > * > th {
+    background-color: var(--brand-gold-light) !important;
+    color: var(--brand-maroon-dark);
+}
+
+.table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(205, 164, 52, 0.12);
+}

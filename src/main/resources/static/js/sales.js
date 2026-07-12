@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //qty Validation
-        const qty = document.getElementById("quantity").value;
-        const remainingQty = document.getElementById("remainingQty").value;
+        const qty = parseFloat(document.getElementById("quantity").value) || 0;
+        const remainingQty = parseFloat(document.getElementById("remainingQty").value) || 0;
 
         if(qty > remainingQty){
             alert("Entered quantity exceeds the remaining quantity!");

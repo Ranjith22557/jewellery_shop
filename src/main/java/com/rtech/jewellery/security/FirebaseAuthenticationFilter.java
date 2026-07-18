@@ -7,6 +7,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,6 +17,8 @@ import java.io.IOException;
 import java.util.Collections;
 
 public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
+
+    private static final Logger log = LoggerFactory.getLogger(FirebaseAuthenticationFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -35,11 +39,18 @@ public class FirebaseAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } catch (FirebaseAuthException e) {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid Firebase ID token.");
+                log.warn("Firebase token verification failed on {} {}: authErrorCode={}, message={}",
+                        request.getMethod(), request.getRequestURI(),
+                        e.getAuthErrorCode(), e.getMessage());
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid Firebase ID token: " + e.getMessage());
+                return;
+            } catch (Exception e) {
+                log.error("Unexpected error verifying Firebase token on {} {}",
+                        request.getMethod(), request.getRequestURI(), e);
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Token verification error: " + e.getMessage());
                 return;
             }
         } else {
-            // Fallback: check if user info exists in HTTP session
             Object userEmail = request.getSession().getAttribute("userEmail");
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UsernamePasswordAuthenticationToken auth =
